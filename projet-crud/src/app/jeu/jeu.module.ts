@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JeuComponent } from './jeuweb/jeu.component';
+import { JeuComponent } from './jeu/jeu.component';
 import { JeuRoutingModule } from './jeu-routing.module';
 
 @NgModule({

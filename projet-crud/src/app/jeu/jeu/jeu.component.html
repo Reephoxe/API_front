@@ -1,13 +1,5 @@
-<div class="demo-button-container">
-    <button mat-raised-button (click)="addData()" class="demo-button">
-        Add data
-    </button>
-    <button mat-raised-button [disabled]="!dataToDisplay.length" (click)="removeData()" class="demo-button">
-        Remove data
-    </button>
-</div>
-
-<table mat-table [dataSource]="jeu" class="mat-elevation-z8 demo-table">
+<h1>TEST</h1>
+<table mat-table [dataSource]="jeux" class="mat-elevation-z8 demo-table">
     <!-- Définition d'une colonne -->
     <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef>No.</th> <!--Nom colonne-->

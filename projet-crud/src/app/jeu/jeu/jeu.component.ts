@@ -7,15 +7,15 @@ import { JeuService } from '../../services/JeuService';
 
 @Component({
   selector: 'app-Jeu',
-  templateUrl: './Jeu.component.html',
+  templateUrl: './jeu.component.html',
   standalone: true,
   imports: [NgForOf, MatTableModule, MatPaginatorModule],
-  styleUrls: ['./Jeu.component.css']
+  styleUrls: ['./jeu.component.css']
 })
 export class JeuComponent implements OnInit {
   displayedColumns: string[] = ['nom'];
 
-  dataSource!: MatTableDataSource<Jeu>;
+  jeux!: MatTableDataSource<Jeu>;
   @ViewChild(MatPaginator) paginator! : MatPaginator;
 
   constructor(private readonly jeuService: JeuService){
@@ -23,8 +23,8 @@ export class JeuComponent implements OnInit {
 
   ngOnInit(): void {
     this.jeuService.getList().subscribe(value => {
-      this.dataSource = new MatTableDataSource<Jeu>(value);
-      this.dataSource.paginator = this.paginator;
+      this.jeux = new MatTableDataSource<Jeu>(value);
+      this.jeux.paginator = this.paginator;
     })
   }
 }
