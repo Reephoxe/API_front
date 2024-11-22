@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>List of reservations</h2>
+    <!-- form -->
+    <div *ngIf="selectedRow" class="form-container">
+        <ul>
+            <li>
+                <label for="reservation_id">
+                Reservation number :
+                </label><br>
+                <input id="reservation_id" type="text" [(ngModel)]="selectedRow.reservation" [readOnly]="true"/>
+            </li>
+            <li><label for="utilisateur_id">
+                Id User :
+            </label><br>
+                <input id="reservation_id" type="text" [(ngModel)]="selectedRow.utilisateur_id" [readOnly]="true"/>
+            </li>
+            <li><label for="jeux_id">
+                Id playground :
+            </label><br>
+                <input id="reservation_id" type="text" [(ngModel)]="selectedRow.jeux_id" [readOnly]="true"/>
+            </li>
+        </ul>
+    </div>
+    
+    <table>
+        <th>Reservation number</th>
+        <th>Users Id</th>
+        <th>Playgrounds Id</th>
+        <tr  *ngFor="let reservation of reservations" (click)="selectRow(reservation)" [class.selected]="reservation === selectedRow">
+            <td> {{ reservation.reservation }}  </td>
+            <td> {{ reservation.utilisateur_id }} </td>
+            <td>{{ reservation.jeux_id}} </td>
+        </tr>
+    </table>
+  
