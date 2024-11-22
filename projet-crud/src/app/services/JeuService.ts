@@ -1,14 +1,27 @@
-/*import { HttpClient } from "@angular/common/http";
-import { catchError } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import { Jeu } from "../models/jeu.model";
 
 
-export class jeuService extends Service {
 
-    API_URL : string = "http://localhost:8080/api";
-    API_ENTITY_NAME : string = "jeu";
+@Injectable({
+    providedIn: 'root'
+})
+export class JeuService {
 
-    constructor(private readonly hhtp:HttpClient, private readonly toastrService: ToastrService){}
+    API_URL: string = "http://localhost:8080/api";
 
-	create(jeu:Jeu) Observable<Jeu> {
-		return this.http.post<OpenData>('${this.API_URL}/${t.API_ENTITY_NAME}/`, jeu).pipe(catchError(this.errorHandler));
-} */
+    constructor(private http: HttpClient) { }
+
+    getList(): Observable<Jeu[]> {
+        return this.http.get<Jeu[]>(this.API_URL);
+    }
+    getById(): Observable<Jeu> {
+        return this.http.get<Jeu>('&{this.apiUrl}/${id}');
+    }
+    createJeu(Jeu: Jeu): Observable<Jeu> {
+        return this.http.post<Jeu>(this.API_URL, Jeu);
+    }
+
+}
