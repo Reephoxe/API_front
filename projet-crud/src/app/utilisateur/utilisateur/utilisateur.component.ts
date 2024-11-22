@@ -1,30 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { NgForOf } from '@angular/common';
+import { Component, ViewChild } from '@angular/core';
 import { Utilisateur } from '../../models/utilisateur.model';
 import { UtilisateurService } from '../../services/UtilisateurService';
-import { NgForOf } from '@angular/common';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 
 @Component({
   selector: 'app-utilisateur',
   templateUrl: './utilisateur.component.html',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    MatTableModule,
+    MatPaginatorModule
   ],
   styleUrls: ['./utilisateur.component.css']
 })
-export class UtilisateurComponent implements OnInit {
-  utilisateurs: Utilisateur[] = [];
+export class UtilisateurComponent {
 
-  constructor(private utilsateurService: UtilisateurService) { }
+  displayColumns : string[] = ['nom'];
+
+  utilisateurs!: MatTableDataSource<Utilisateur>;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private readonly utilsateurService: UtilisateurService) { }
 
   ngOnInit(): void {
-    
-    this.getUtilisateurs();
+    this.utilsateurService.getList().subscribe(value =>{
+      this.utilisateurs = new MatTableDataSource<Utilisateur>(value);
+      this.utilisateurs.paginator = this.paginator;
+    });
   }
+  
 
-  getUtilisateurs(): void {
-    this.utilsateurService.getList().subscribe(
-      utilisateurs => this.utilisateurs = utilisateurs
-    );
-  }
 }
