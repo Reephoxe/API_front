@@ -20,3 +20,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> <!--Choix des colonnes à afficher.-->
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [pageSize]="5" showFirstLastButtons></mat-paginator>
