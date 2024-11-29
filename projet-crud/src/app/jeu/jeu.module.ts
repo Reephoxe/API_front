@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JeuComponent } from './jeu/jeu.component';
-import { JeuRoutingModule } from './jeu-routing.module';
 
 @NgModule({
     declarations: [
@@ -10,7 +9,6 @@ import { JeuRoutingModule } from './jeu-routing.module';
     imports: [
         CommonModule,
         JeuComponent,
-        JeuRoutingModule
     ]
 })
 export class JeuModule { }

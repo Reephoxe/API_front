@@ -13,7 +13,9 @@ import { JeuService } from '../../services/JeuService';
   styleUrls: ['./jeu.component.css']
 })
 export class JeuComponent implements OnInit {
-  displayedColumns: string[] = ['nom'];
+
+  displayedColumns: string[] = ['nom', 'description', 'quantite', 'point_geo'];
+  
 
   jeux!: MatTableDataSource<Jeu>;
   @ViewChild(MatPaginator) paginator! : MatPaginator;
