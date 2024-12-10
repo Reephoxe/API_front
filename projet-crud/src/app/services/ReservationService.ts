@@ -12,7 +12,7 @@ import { Reservation } from "../models/reservation.model";
 
 export class ReservationService {
     API_URL : string = "http://localhost:8080";
-    API_ENTITY_NAME : string = "Reservation";
+    API_ENTITY_NAME : string = "reservation";
 
     constructor(private readonly http:HttpClient){}
 

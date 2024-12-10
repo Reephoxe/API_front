@@ -1,0 +1,22 @@
+
+<table mat-table [dataSource]="reservation" class="mat-elevation-z8 demo-table">
+    <!-- Définition d'une colonne -->
+    <ng-container matColumnDef="reservation">
+        <th mat-header-cell *matHeaderCellDef>Reservation number</th> <!--Nom colonne-->
+        <td mat-cell *matCellDef="let element">{{element.reservation}}</td> <!--Element à mettre dans la colonne. -->
+    </ng-container>
+    <ng-container matColumnDef="utilisateur_id">
+        <th mat-header-cell *matHeaderCellDef>Users Id</th> <!--Nom colonne-->
+        <td mat-cell *matCellDef="let element">{{element.utilisateur_id}}</td> <!--Element à mettre dans la colonne. -->
+    </ng-container>
+    <ng-container matColumnDef="jeux_id">
+        <th mat-header-cell *matHeaderCellDef>Playgrounds Id</th> <!--Nom colonne-->
+        <td mat-cell *matCellDef="let element">{{element.jeux_id}}</td> <!--Element à mettre dans la colonne. -->
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> <!--Choix des colonnes à afficher.-->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSize]="5" showFirstLastButtons></mat-paginator>
+    
+  

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationComponent } from './reservation/reservation/reservation.component';
 import { JeuComponent } from './jeu/jeu/jeu.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur/utilisateur.component';
 import { MapComponent } from './map/map.component';
