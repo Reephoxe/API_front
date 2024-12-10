@@ -4,6 +4,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Jeu } from '../../models/jeu.model';
 import { JeuService } from '../../services/JeuService';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-Jeu',
@@ -14,19 +16,19 @@ import { JeuService } from '../../services/JeuService';
 })
 export class JeuComponent implements OnInit {
 
-  displayedColumns: string[] = ['nom', 'description', 'quantite', 'point_geo', 'actions'];
+  displayedColumns: string[] = ['nom', 'description', 'quantite', 'point_geo', 'supprimer', 'modifier'];
   
 
   jeux!: MatTableDataSource<Jeu>;
   @ViewChild(MatPaginator) paginator! : MatPaginator;
 
-  constructor(private readonly jeuService: JeuService){
+  constructor(private readonly jeuService: JeuService, private router: Router){
   }
 
   loadJeux(): void {
     this.jeuService.getList().subscribe(value => {
-        this.jeux = new MatTableDataSource<Jeu>(value);
-        this.jeux.paginator = this.paginator; // Assurez-vous que la pagination reste active
+        this.jeux = new MatTableDataSource<Jeu>(value); 
+        this.jeux.paginator = this.paginator;
     });
 }
   ngOnInit(): void {
@@ -49,5 +51,9 @@ export class JeuComponent implements OnInit {
       });
     }
   }
+  update(element: Jeu): void {
+    this.router.navigate(['/modifier', element.id]); // Redirection avec l'ID du jeu
+  }
+
   
 }

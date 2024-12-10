@@ -17,14 +17,17 @@ export class JeuService {
     getList(): Observable<Jeu[]> {
         return this.http.get<Jeu[]>(this.API_URL);
     }
-    getById(): Observable<Jeu> {
-        return this.http.get<Jeu>('${this.API_URL}/${id}');
+    getById(id : number): Observable<Jeu> {
+        return this.http.get<Jeu>(`${this.API_URL}/${id}`);
     }
     createJeu(Jeu: Jeu): Observable<Jeu> {
         return this.http.post<Jeu>(this.API_URL, Jeu);
     }
     deleteJeu(id : number): Observable<void>{
         return this.http.delete<void>(`${this.API_URL}/${id}`);
+    }
+    updadeJeu(id : number, jeu : Jeu): Observable<Jeu>{
+        return this.http.put<Jeu>(`${this.API_URL}/${id}`, jeu);
     }
 
 }

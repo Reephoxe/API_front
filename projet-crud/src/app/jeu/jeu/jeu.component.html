@@ -16,10 +16,16 @@
         <th mat-header-cell *matHeaderCellDef>PointGeo</th> <!--Nom colonne-->
         <td mat-cell *matCellDef="let element">{{element.point_geo}}</td> <!--Element à mettre dans la colonne. -->
     </ng-container>
-    <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th> <!--Nom colonne-->
+    <ng-container matColumnDef="supprimer">
+        <th mat-header-cell *matHeaderCellDef>Supprimer</th> <!--Nom colonne-->
         <td mat-cell *matCellDef="let element">
             <button type="button" (click)="onDelete(element)">Supprimer</button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="modifier">
+        <th mat-header-cell *matHeaderCellDef>modifier</th> <!--Nom colonne-->
+        <td mat-cell *matCellDef="let element">
+            <button type="button" (click)="update(element)">modifier</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> <!--Choix des colonnes à afficher.-->
