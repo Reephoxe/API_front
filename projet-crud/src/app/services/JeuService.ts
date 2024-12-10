@@ -10,7 +10,7 @@ import { Jeu } from "../models/jeu.model";
 })
 export class JeuService {
 
-    API_URL: string = "http://localhost:8080/jeu"; // redondant -> peut créer une constante du début du chemin
+    API_URL: string = "http://localhost:8080/jeux"; // redondant -> peut créer une constante du début du chemin
 
     constructor(private http: HttpClient) { }
 
