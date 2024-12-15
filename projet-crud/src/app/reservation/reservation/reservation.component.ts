@@ -17,10 +17,10 @@ export class ReservationComponent implements OnInit {
   displayedColumns: string[] = ['reservation', 'utilisateur_id', 'jeux_id'];
 
   reservation!: MatTableDataSource<Reservation>;
-  @ViewChild(MatPaginator) paginator! : MatPaginator;
-  newReservation: Reservation = { utilisateur_id: null, jeux_id : null};
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  newReservation: Reservation = { utilisateur_id: null, jeux_id: null, reservation: null};
 
-  constructor(private readonly reservationService: ReservationService){
+  constructor(private readonly reservationService: ReservationService) {
   }
 
   ngOnInit(): void {
@@ -31,15 +31,12 @@ export class ReservationComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.newReservation.utilisateur_id && this.newReservation.jeux_id) {
-      // Créer la réservation via le service
+    if (this.newReservation.utilisateur_id && this.newReservation.jeux_id && this.newReservation.reservation) {
       this.reservationService.createReservation(this.newReservation).subscribe(
         (reservation: Reservation) => {
-          // Ajouter la réservation créée à la liste des réservations
           this.reservation.data.push(reservation);
-          this.reservation._updateChangeSubscription();  // Mettre à jour la table
-          // Réinitialiser le formulaire
-          this.newReservation = { utilisateur_id: null, jeux_id: null };
+          this.reservation._updateChangeSubscription();
+          this.newReservation = { utilisateur_id: null, jeux_id: null, reservation: null};
         },
         error => {
           console.error('Erreur lors de la création de la réservation', error);
@@ -47,6 +44,4 @@ export class ReservationComponent implements OnInit {
       );
     }
   }
-
-
 }

@@ -36,10 +36,13 @@
         <form (ngSubmit)="onSubmit()">
             <label for="utilisateurId">ID Utilisateur: </label>
             <input type="number" id="utilisateurId" [(ngModel)]="newReservation.utilisateur_id" name="utilisateurId" required><br>
-          
+            <br>
             <label for="jeuId">ID Jeu: </label>
             <input type="number" id="jeuId" [(ngModel)]="newReservation.jeux_id" name="jeuId" required><br>
-          
+            <br>
+            <label for="reservation">Quantité: </label>
+            <input type="number" id="reservation" [(ngModel)]="newReservation.reservation" name="reservation" required><br>
+            <br>
             <button type="submit">Créer la réservation</button>
           </form>
           

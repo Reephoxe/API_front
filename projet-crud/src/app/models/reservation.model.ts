@@ -1,5 +1,5 @@
 export interface Reservation {
-    reservation?: number;
+    reservation : number | null;
     utilisateur_id: number | null;
     jeux_id: number | null;
   }
