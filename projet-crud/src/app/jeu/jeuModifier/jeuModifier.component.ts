@@ -1,41 +1,70 @@
-import { CommonModule, NgForOf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableModule } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
-import { JeuService } from '../../services/JeuService';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from "@angular/material/button";
+import { MatFormField, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { ActivatedRoute, Router } from '@angular/router';
 import { Jeu } from '../../models/jeu.model';
-import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { JeuService } from '../../services/JeuService';
+
 
 
 @Component({
     selector: 'app-JeuModifier',
     templateUrl: './jeuModifier.component.html',
     standalone: true,
-    imports: [NgForOf, MatTableModule, MatPaginatorModule, CommonModule, FormsModule  ],
+    imports: [NgForOf, 
+              ReactiveFormsModule,
+              MatFormField,
+              MatInput,
+              MatButton,
+              MatLabel
+    ],
     styleUrls: ['./jeuModifier.component.css']
   })
 export class JeuModifierComponent implements OnInit{
-
-  jeux!: Jeu;
-
-    constructor(private route: ActivatedRoute, private jeuService: JeuService, private router: Router) {}
-
-    ngOnInit(): void {
-      // Récupérer l'ID depuis la route
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-  
-      // Charger les données du jeu à partir de l'ID
-      this.jeuService.getById(id).subscribe(value => {
-        this.jeux = value; 
-      });
+  jeuForm!: FormGroup;
+  jeuId!: number;  
+    
+    constructor(private route: ActivatedRoute, private jeuService: JeuService, private router: Router, private fb : FormBuilder) {
     }
 
+ 
+    ngOnInit(): void {
+      this.jeuId = Number(this.route.snapshot.paramMap.get('id'));
+      this.jeuForm = this.fb.group({
+        nom : [''],
+        description: [''],
+        quantite: [''],
+        point_geo: ['']
+      });
+      //Charger les données du jeu
+      this.jeuService.getById(this.jeuId).subscribe({
+        next: (jeu) =>{
+          // on met à jour les valeurs du formulaire
+          this.jeuForm.patchValue({
+            nom: jeu.nom,
+            description: jeu.description,
+            quantite: jeu.quantite,
+            point_geo: jeu.point_geo
+          });
+        }
+      });
+      
+    }
     modifier(): void {
-      this.jeuService.updadeJeu(this.jeux.id, this.jeux).subscribe({
+      const jeuModifier: Jeu = {
+        id: this.jeuId,  
+        nom: this.jeuForm.get('nom')?.value,
+        description: this.jeuForm.get('description')?.value,
+        quantite: this.jeuForm.get('quantite')?.value,
+        point_geo: this.jeuForm.get('point_geo')?.value
+      };
+
+      this.jeuService.updadeJeu(this.jeuId, jeuModifier).subscribe({
         next: () => {
-          alert('Jeu mis à jour avec succès !');
+          alert(jeuModifier.nom + ' mis à jour avec succès !');
           this.router.navigate(['/']); // Redirection vers la liste des jeux
         },
         error: (err) => {

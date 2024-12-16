@@ -1,25 +1,28 @@
-<div *ngIf="jeux">
-    <h2>Modifier le jeu : {{ jeux.nom }}</h2>
-    
-    <form (ngSubmit)="modifier()">
-      <label for="nom">Nom : </label> 
-      <input type="text" name="nom" id="nom" [(ngModel)]="jeux.nom" required>
-      <br><br>
-      
-      <label for="description">Description : </label> 
-      <input type="text" name="description" id="description" [(ngModel)]="jeux.description" required>
-      <br><br>
-      
-      <label for="quantite">Quantité : </label> 
-      <input type="number" name="quantite" id="quantite" [(ngModel)]="jeux.quantite" required>
-      <br><br>
-      
-      <label for="point_geo">Point Geo : </label> 
-      <input type="text" name="point_geo" id="point_geo" [(ngModel)]="jeux.point_geo" required>
-      <br><br>
+<br>
+  <form [formGroup]="jeuForm" (ngSubmit)="modifier()">
+    <mat-form-field>
   
-      <button type="submit">Enregistrer</button>
-      <button type="button" (click)="cancel()">Annuler</button>
-    </form>
-  </div>
-  
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="nom" required>
+      
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput formControlName="description" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Quantité</mat-label>
+      <input matInput formControlName="quantite" required>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <mat-label>Point Geo</mat-label>
+      <input matInput formControlName="point_geo" required>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+    <button mat-raised-button type="button" (click)="cancel()">Annuler</button>
+
+  </form>
