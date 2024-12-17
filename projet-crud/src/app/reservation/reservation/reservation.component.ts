@@ -29,17 +29,17 @@ export class ReservationComponent implements OnInit {
       this.reservation.paginator = this.paginator;
     })
   }
-
+  //Fonction d'ajout d'une nouvelle réservation via le formulaire
   onSubmit(): void {
     if (this.newReservation.utilisateur_id && this.newReservation.jeux_id && this.newReservation.reservation) {
       this.reservationService.createReservation(this.newReservation).subscribe(
-        (reservation: Reservation) => {
-          this.reservation.data.push(reservation);
-          this.reservation._updateChangeSubscription();
-          this.newReservation = { utilisateur_id: null, jeux_id: null, reservation: null};
+        (reservation: Reservation) => { //Création de l'objet Réservation
+          this.reservation.data.push(reservation); // Ajout de l'objet 
+          this.reservation._updateChangeSubscription(); // Validation de l'ajout 
+          this.newReservation = { utilisateur_id: null, jeux_id: null, reservation: null}; // Remise à vide des champs du formulaire
         },
         error => {
-          console.error('Erreur lors de la création de la réservation', error);
+          console.error('Erreur lors de la création de la réservation', error); // Erreur si l'ajout ne fonctionne pas, peut être dû à plusieurs facteurs 
         }
       );
     }
