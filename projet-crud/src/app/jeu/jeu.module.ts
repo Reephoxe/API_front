@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { JeuComponent } from './jeu/jeu.component';
 import { JeuModifierComponent } from './jeuModifier/jeuModifier.component';
 
-@NgModule({
-    declarations: [
+@NgModule({ // Déclaration du module
+    declarations: [ // Déclaration des composants du module
         JeuComponent,
         JeuModifierComponent
     ],
-    imports: [
+    imports: [ // Imports des éléments utilisés dans le module
         CommonModule,
 
     ]
