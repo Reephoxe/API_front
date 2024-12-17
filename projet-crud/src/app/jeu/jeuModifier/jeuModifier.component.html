@@ -1,28 +1,32 @@
 <br>
-  <form [formGroup]="jeuForm" (ngSubmit)="modifier()">
+  <form [formGroup]="jeuForm" (ngSubmit)="modifier()"> <!-- on récupère jeuForm avec [formGroup] + en cas de submit, on appel la fonction modifier -->
+    <!-- zone pour le nom | formCOntrolName permet de récupérer l'inforamtions dans jeuForm sous le nom qui suit-->
     <mat-form-field>
-  
       <mat-label>Nom</mat-label>
-      <input matInput formControlName="nom" required>
-      
+      <input matInput formControlName="nom" required>  
     </mat-form-field>
     <br>
+    <!-- zone pour la description-->
     <mat-form-field>
       <mat-label>Description</mat-label>
       <input matInput formControlName="description" required>
     </mat-form-field>
     <br>
+    <!-- zone de la quantite-->
     <mat-form-field>
       <mat-label>Quantité</mat-label>
       <input matInput formControlName="quantite" required>
     </mat-form-field>
     <br>
+    <!-- zone du point géographique-->
     <mat-form-field>
       <mat-label>Point Geo</mat-label>
       <input matInput formControlName="point_geo" required>
     </mat-form-field>
     <br>
+    <!-- pour valiser-->
     <button mat-raised-button color="primary" type="submit">Enregistrer</button>
+    <!-- pour annuler | appelle la methode cancel dans le .ts-->
     <button mat-raised-button type="button" (click)="cancel()">Annuler</button>
 
   </form>
