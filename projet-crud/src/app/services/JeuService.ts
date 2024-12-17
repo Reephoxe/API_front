@@ -5,10 +5,10 @@ import { Jeu } from "../models/jeu.model";
 
 
 
-@Injectable({
-    providedIn: 'root'
+@Injectable({ // Marquage de l'injection de dépendances pour la classe 
+    providedIn: 'root' // Indiquation de la localisation où les données doivent être récupérées
 })
-export class JeuService {
+export class JeuService { // Classe de "manipulation" des données liées aux aires de jeux 
 
     API_URL: string = "http://localhost:8080/jeux"; // redondant -> peut créer une constante du début du chemin
 
