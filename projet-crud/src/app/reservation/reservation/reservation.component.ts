@@ -1,32 +1,31 @@
-import { NgForOf } from '@angular/common';
+import { NgForOf } from '@angular/common'; 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Reservation } from '../../models/reservation.model';
 import { ReservationService } from '../../services/ReservationService';
 import { FormsModule } from '@angular/forms';
-@Component({
+@Component({ //Parametrage du component des réservations
   selector: 'app-Reservation',
   templateUrl: './reservation.component.html',
   standalone: true,
   imports: [NgForOf, MatTableModule, MatPaginatorModule, FormsModule],
   styleUrls: ['./reservation.component.css']
 })
-export class ReservationComponent implements OnInit {
+export class ReservationComponent implements OnInit { //Déclaration du composant 
 
-  displayedColumns: string[] = ['reservation', 'utilisateur_id', 'jeux_id'];
+  displayedColumns: string[] = ['reservation', 'utilisateur_id', 'jeux_id']; // Préparation des colonnes du tableau 
 
-  reservation!: MatTableDataSource<Reservation>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  newReservation: Reservation = { utilisateur_id: null, jeux_id: null, reservation: null};
+  reservation!: MatTableDataSource<Reservation>; //Préparation du tableau 
+  @ViewChild(MatPaginator) paginator!: MatPaginator; //Préparation du paginator
+  newReservation: Reservation = { utilisateur_id: null, jeux_id: null, reservation: null}; // Préparation du formulaire d'ajout de réservation
 
-  constructor(private readonly reservationService: ReservationService) {
-  }
+  constructor(private readonly reservationService: ReservationService) {} //Constructeur par déaut 
 
-  ngOnInit(): void {
-    this.reservationService.getAll().subscribe(value => {
-      this.reservation = new MatTableDataSource<Reservation>(value);
-      this.reservation.paginator = this.paginator;
+  ngOnInit(): void { //Préparation automatique du composant
+    this.reservationService.getAll().subscribe(value => { //Récupération des valeurs en BDD
+      this.reservation = new MatTableDataSource<Reservation>(value); //Initialisation du tableau avec les valeurs 
+      this.reservation.paginator = this.paginator; //Initialisation du paginator
     })
   }
   //Fonction d'ajout d'une nouvelle réservation via le formulaire

@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { ReservationComponent } from './reservation/reservation.component';
 import { FormsModule } from '@angular/forms'; 
 
-@NgModule({
-    declarations: [
+@NgModule({ //Déclaration du module
+    declarations: [ //Déclarations des composants liées à ce module
         ReservationComponent
     ],
-    imports: [
+    imports: [ //Imports des éléments utilisés dans le module
         CommonModule,
         FormsModule
     ],
