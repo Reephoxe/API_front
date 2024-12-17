@@ -1,4 +1,4 @@
-import { NgForOf } from '@angular/common'; 
+import { NgForOf } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
@@ -15,12 +15,12 @@ import { FormsModule } from '@angular/forms';
 export class ReservationComponent implements OnInit { //Déclaration du composant 
 
   displayedColumns: string[] = ['reservation', 'utilisateur_id', 'jeux_id']; // Préparation des colonnes du tableau 
-
+  formVisible = false;
   reservation!: MatTableDataSource<Reservation>; //Préparation du tableau 
   @ViewChild(MatPaginator) paginator!: MatPaginator; //Préparation du paginator
-  newReservation: Reservation = { utilisateur_id: null, jeux_id: null, reservation: null}; // Préparation du formulaire d'ajout de réservation
+  newReservation: Reservation = { utilisateur_id: null, jeux_id: null, reservation: null }; // Préparation du formulaire d'ajout de réservation
 
-  constructor(private readonly reservationService: ReservationService) {} //Constructeur par déaut 
+  constructor(private readonly reservationService: ReservationService) { } //Constructeur par déaut 
 
   ngOnInit(): void { //Préparation automatique du composant
     this.reservationService.getAll().subscribe(value => { //Récupération des valeurs en BDD
@@ -35,12 +35,16 @@ export class ReservationComponent implements OnInit { //Déclaration du composan
         (reservation: Reservation) => { //Création de l'objet Réservation
           this.reservation.data.push(reservation); // Ajout de l'objet 
           this.reservation._updateChangeSubscription(); // Validation de l'ajout 
-          this.newReservation = { utilisateur_id: null, jeux_id: null, reservation: null}; // Remise à vide des champs du formulaire
+          this.newReservation = { utilisateur_id: null, jeux_id: null, reservation: null }; // Remise à vide des champs du formulaire
         },
         error => {
           console.error('Erreur lors de la création de la réservation', error); // Erreur si l'ajout ne fonctionne pas, peut être dû à plusieurs facteurs 
         }
       );
     }
+  }
+
+  toggleForm() {
+    this.formVisible = !this.formVisible;
   }
 }
