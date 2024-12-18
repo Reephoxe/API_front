@@ -5,6 +5,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Jeu } from '../../models/jeu.model';
 import { JeuService } from '../../services/JeuService';
 import { Router } from '@angular/router';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 /**
  * Composant Angular pour afficher la liste des jeux dans une table.
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
   selector: 'app-Jeu',
   templateUrl: './jeu.component.html',
   standalone: true,
-  imports: [NgForOf, MatTableModule, MatPaginatorModule],
+  imports: [NgForOf, MatTableModule, MatPaginatorModule, MatButtonModule],
   styleUrls: ['./jeu.component.css']
 })
 export class JeuComponent implements OnInit {

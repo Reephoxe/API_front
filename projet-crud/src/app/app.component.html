@@ -1,5 +1,63 @@
-<h1>Système de gestion des aires de jeu de Tours</h1> <!--Header pour la navigation sur le site-->
+<!--
+<h1>Système de gestion des aires de jeu de Tours</h1> Header pour la navigation sur le site
 <nav>
-  <a routerLink="/jeux">View jeux</a> |<a routerLink="/reservations">View Reservations</a> |  <a routerLink="/map">View Map</a> <!--Liste de liens vers les différentes pages-->
+  <a routerLink="/jeux">View jeux</a> |<a routerLink="/reservations">View Reservations</a> |  <a routerLink="/map">View Map</a> Liste de liens vers les différentes pages
 </nav>
 <router-outlet />
+-->
+
+<!--<body class="app-background">
+
+<div class="mat-elevation-z6 title">
+  <nav _ngcontent-c1="" class="navbar-link navbar-show-small">
+    <h1 class="title">Welcome to utilisateur Management System</h1>
+  </nav>
+  <nav _ngcontent-c1="" class="navbar-link navbar-show-small">
+    <a _ngcontent-c1="" routerLink="/utilisateurs" class="navbar-link mat-button ng-star-inserted" mat-button="" aria-disabled="false">
+      <span class="mat-button-wrapper">Utilisateurs</span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a _ngcontent-c1="" routerLink="/reservations" class="navbar-link mat-button ng-star-inserted" mat-button="" aria-disabled="false">
+      <span class="mat-button-wrapper">Réservations</span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a _ngcontent-c1="" routerLink="/jeux" class="navbar-link mat-button" mat-button=""  aria-disabled="false">
+      <span class="mat-button-wrapper">Jeux</span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a _ngcontent-c1="" routerLink="/map" class="navbar-link mat-button" mat-button=""  aria-disabled="false">
+      <span class="mat-button-wrapper">Map</span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+  </nav>
+</div>
+<div class="mat-container">
+  <router-outlet/>
+</div>
+</body>
+-->
+<div class="app-background">
+  <div class="mat-elevation navbar">
+    <nav class="navbar-link navbar-show-small">
+      <h1 class="navbar-title">Système de gestion des aires de jeu de Tours</h1> <!--Header pour la navigation sur le site-->
+    </nav>
+    <nav class="navbar-button"> <!-- Liste de liens vers les différentes pages -->
+      <a routerLink="/reservations" class="mat-button" mat-button>
+        <span class="mat-button-wrapper">Réservations</span>
+      </a>
+      <a  routerLink="/jeux" class="mat-button" mat-button>
+        <span class="mat-button-wrapper">Jeux</span>
+      </a>
+      <a  routerLink="/map" class="mat-button" mat-button>
+        <span class="mat-button-wrapper">Map</span>
+      </a>
+    </nav>
+  </div>
+  <div class="mat-container"> <!-- Contenu du site -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

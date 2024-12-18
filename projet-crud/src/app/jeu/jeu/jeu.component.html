@@ -24,14 +24,14 @@
     <ng-container matColumnDef="supprimer"> <!-- on défini la colonne supprimer -->
         <th mat-header-cell *matHeaderCellDef>Supprimer</th> 
         <td mat-cell *matCellDef="let element">
-            <button type="button" (click)="onDelete(element)">Supprimer</button> <!-- ici on créer un bouton supprimer qui appele la méthode onDelete avec en paramètre l'element-->
+            <button class="button-rounded" mat-flat-button color="warn"  type="button" (click)="onDelete(element)">Supprimer</button> <!-- ici on créer un bouton supprimer qui appele la méthode onDelete avec en paramètre l'element-->
         </td> <!-- l'element permet de savoir qu'elle ligne est à prendre en compte-->
     </ng-container>
     <!-- zone de modification-->
     <ng-container matColumnDef="modifier"> <!-- on défini la colonne modifier-->
         <th mat-header-cell *matHeaderCellDef>modifier</th>
         <td mat-cell *matCellDef="let element">
-            <button type="button" (click)="update(element)">modifier</button> <!-- ici on créer un bouton modifier qui appelle la méthode update avec comme paramètre l'element-->
+            <button class="button-rounded" mat-flat-button color="accent" type="button" (click)="update(element)">modifier</button> <!-- ici on créer un bouton modifier qui appelle la méthode update avec comme paramètre l'element-->
         </td><!-- l'element permet de savoir qu'elle ligne est à prendre en compte-->
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> <!-- permet de générer automatiquement les entètes en fonction de displayedColumns-->
